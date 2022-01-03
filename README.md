@@ -57,6 +57,6 @@ To get started with development:
 ```sh
 git clone https://github.com/ankane/dist.h.git
 cd dist.h
-gcc -o test/main test/main.c
+gcc -o test/main test/main.c -lm
 test/main
 ```
