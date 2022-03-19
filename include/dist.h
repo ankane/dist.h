@@ -1,5 +1,5 @@
 /*!
- * dist.h v0.1.0
+ * dist.h v0.1.1
  * https://github.com/ankane/dist.h
  * Unlicense OR MIT License
  */
