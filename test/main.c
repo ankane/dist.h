@@ -59,6 +59,14 @@ void test_students_t_pdf_thirty() {
     }
 }
 
+void test_students_t_pdf_non_integer() {
+    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
+    double expected[] = {0.02504, 0.06796, 0.2008, 0.36181, 0.2008, 0.06796, 0.02504};
+    for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_pdf(inputs[i], 2.5), expected[i], 0.00001);
+    }
+}
+
 void test_students_t_cdf_one() {
     double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
     double expected[] = {0.10242, 0.14758, 0.25, 0.5, 0.75, 0.85242, 0.89758};
@@ -80,6 +88,14 @@ void test_students_t_cdf_thirty() {
     double expected[] = {0.00269, 0.02731, 0.16265, 0.5, 0.83735, 0.97269, 0.99731};
     for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_cdf(inputs[i], 30), expected[i], 0.0002);
+    }
+}
+
+void test_students_t_cdf_non_integer() {
+    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
+    double expected[] = {0.03629, 0.0787, 0.20203, 0.5, 0.79797, 0.9213, 0.96371};
+    for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_cdf(inputs[i], 2.5), expected[i], 0.0003);
     }
 }
 
@@ -107,6 +123,14 @@ void test_students_t_ppf_thirty() {
     }
 }
 
+void test_students_t_ppf_non_integer() {
+    double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    double expected[] = {-INFINITY, -1.73025, -1.01016, -0.59731, -0.28146, 0.0, 0.28146, 0.59731, 1.01016, 1.73025, INFINITY};
+    for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_ppf(inputs[i], 2.5), expected[i], 0.0002);
+    }
+}
+
 int main() {
     test_normal_pdf();
     test_normal_cdf();
@@ -115,14 +139,17 @@ int main() {
     test_students_t_pdf_one();
     test_students_t_pdf_two();
     test_students_t_pdf_thirty();
+    test_students_t_pdf_non_integer();
 
     test_students_t_cdf_one();
     test_students_t_cdf_two();
     test_students_t_cdf_thirty();
+    test_students_t_cdf_non_integer();
 
     test_students_t_ppf_one();
     test_students_t_ppf_two();
     test_students_t_ppf_thirty();
+    test_students_t_ppf_non_integer();
 
     return 0;
 }
