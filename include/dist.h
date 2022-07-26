@@ -25,19 +25,6 @@
 // A handy approximation for the error function and its inverse.
 // https://drive.google.com/file/d/0B2Mt7luZYBrwZlctV3A3eF82VGM/view?resourcekey=0-UQpPhwZgzP0sF4LHBDlLtg
 // from https://sites.google.com/site/winitzki
-double erf(double x) {
-    double sign = x < 0 ? -1.0 : 1.0;
-    x = x < 0 ? -x : x;
-
-    double a = 0.14;
-    double x2 = x * x;
-    return sign * sqrt(1.0 - exp(-x2 * (4.0 / DIST_PI + a * x2) / (1.0 + a * x2)));
-}
-
-// Winitzki, S. (2008).
-// A handy approximation for the error function and its inverse.
-// https://drive.google.com/file/d/0B2Mt7luZYBrwZlctV3A3eF82VGM/view?resourcekey=0-UQpPhwZgzP0sF4LHBDlLtg
-// from https://sites.google.com/site/winitzki
 double inverse_erf(double x) {
     double sign = x < 0 ? -1.0 : 1.0;
     x = x < 0 ? -x : x;

@@ -23,7 +23,7 @@ void test_normal_cdf() {
     double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
     double expected[] = {0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865};
     for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(normal_cdf(inputs[i], 0, 1), expected[i], 0.0002);
+        assert_in_delta(normal_cdf(inputs[i], 0, 1), expected[i], 0.00001);
     }
 }
 
