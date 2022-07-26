@@ -87,7 +87,7 @@ void test_students_t_cdf_thirty() {
     double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
     double expected[] = {0.00269, 0.02731, 0.16265, 0.5, 0.83735, 0.97269, 0.99731};
     for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(students_t_cdf(inputs[i], 30), expected[i], 0.0002);
+        assert_in_delta(students_t_cdf(inputs[i], 30), expected[i], 0.00001);
     }
 }
 
@@ -95,7 +95,7 @@ void test_students_t_cdf_non_integer() {
     double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
     double expected[] = {0.03629, 0.0787, 0.20203, 0.5, 0.79797, 0.9213, 0.96371};
     for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(students_t_cdf(inputs[i], 2.5), expected[i], 0.0003);
+        assert_in_delta(students_t_cdf(inputs[i], 2.5), expected[i], 0.00005);
     }
 }
 
