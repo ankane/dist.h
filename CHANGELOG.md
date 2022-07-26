@@ -1,7 +1,7 @@
 ## 0.2.0 (unreleased)
 
 - Added support for non-integer degrees of freedom
-- Use `erf` from `math.h`
+- Improved accuracy of `normal_cdf` and `students_t_cdf`
 
 ## 0.1.1 (2022-03-19)
 
