@@ -19,6 +19,14 @@ void test_normal_pdf() {
     }
 }
 
+void test_normal_pdf_mean_std_dev() {
+    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
+    double expected[] = {0.027, 0.06476, 0.12099, 0.17603, 0.19947, 0.17603, 0.12099};
+    for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(normal_pdf(inputs[i], 1, 2), expected[i], 0.00001);
+    }
+}
+
 void test_normal_cdf() {
     double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
     double expected[] = {0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865};
@@ -27,11 +35,27 @@ void test_normal_cdf() {
     }
 }
 
+void test_normal_cdf_mean_std_dev() {
+    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
+    double expected[] = {0.02275, 0.06681, 0.15866, 0.30854, 0.5, 0.69146, 0.84134};
+    for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(normal_cdf(inputs[i], 1, 2), expected[i], 0.00001);
+    }
+}
+
 void test_normal_ppf() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -1.28155, -0.84162, -0.5244, -0.25335, 0.0, 0.25335, 0.5244, 0.84162, 1.28155, INFINITY};
     for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_ppf(inputs[i], 0, 1), expected[i], 0.0002);
+    }
+}
+
+void test_normal_ppf_mean_std_dev() {
+    double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    double expected[] = {-INFINITY, -1.5631, -0.68324, -0.0488, 0.49331, 1.0, 1.50669, 2.0488, 2.68324, 3.5631, INFINITY};
+    for (int i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(normal_ppf(inputs[i], 1, 2), expected[i], 0.0004);
     }
 }
 
@@ -133,8 +157,11 @@ void test_students_t_ppf_non_integer() {
 
 int main() {
     test_normal_pdf();
+    test_normal_pdf_mean_std_dev();
     test_normal_cdf();
+    test_normal_cdf_mean_std_dev();
     test_normal_ppf();
+    test_normal_ppf_mean_std_dev();
 
     test_students_t_pdf_one();
     test_students_t_pdf_two();
