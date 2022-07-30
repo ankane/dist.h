@@ -104,6 +104,14 @@ void test_students_t_pdf_non_integer() {
     }
 }
 
+void test_students_t_pdf_less_than_one() {
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.02963, 0.0519, 0.1183, 0.26968, 0.1183, 0.0519, 0.02963, 0.0};
+    for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_pdf(inputs[i], 0.5), expected[i], 0.00001);
+    }
+}
+
 void test_students_t_pdf_nan() {
     assert(isnan(students_t_pdf(NAN, 1)));
     // TODO uncomment in 0.2.0
@@ -196,6 +204,7 @@ int main() {
     test_students_t_pdf_two();
     test_students_t_pdf_thirty();
     test_students_t_pdf_non_integer();
+    test_students_t_pdf_less_than_one();
     test_students_t_pdf_nan();
 
     test_students_t_cdf_one();

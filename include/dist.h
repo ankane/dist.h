@@ -68,7 +68,7 @@ double normal_ppf(double p, double mean, double std_dev) {
 }
 
 double students_t_pdf(double x, double n) {
-    assert(n >= 1);
+    assert(n > 0.0);
 
     return tgamma((n + 1.0) / 2.0) / (sqrt(n * DIST_PI) * tgamma(n / 2.0)) * pow(1.0 + x * x / n, -(n + 1.0) / 2.0);
 }
