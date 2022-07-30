@@ -28,6 +28,15 @@ void test_normal_pdf_mean_std_dev() {
     }
 }
 
+void test_normal_pdf_infinite_mean() {
+    assert_in_delta(normal_pdf(0, -INFINITY, 1), 0, 0.00001);
+    assert_in_delta(normal_pdf(0, INFINITY, 1), 0, 0.00001);
+}
+
+void test_normal_pdf_infinite_std_dev() {
+    assert_in_delta(normal_pdf(0, 0, INFINITY), 0, 0.00001);
+}
+
 void test_normal_pdf_nan() {
     assert(isnan(normal_pdf(NAN, 0.0, 1.0)));
     assert(isnan(normal_pdf(0.0, NAN, 1.0)));
@@ -48,6 +57,15 @@ void test_normal_cdf_mean_std_dev() {
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_cdf(inputs[i], 1, 2), expected[i], 0.00001);
     }
+}
+
+void test_normal_cdf_infinite_mean() {
+    assert_in_delta(normal_cdf(1, -INFINITY, 1), 1, 0.00001);
+    assert_in_delta(normal_cdf(1, INFINITY, 1), 0, 0.00001);
+}
+
+void test_normal_cdf_infinite_std_dev() {
+    assert_in_delta(normal_cdf(1, 0, INFINITY), 0.5, 0.00001);
 }
 
 void test_normal_cdf_nan() {
@@ -191,10 +209,14 @@ void test_students_t_ppf_non_integer() {
 int main() {
     test_normal_pdf();
     test_normal_pdf_mean_std_dev();
+    test_normal_pdf_infinite_mean();
+    test_normal_pdf_infinite_std_dev();
     test_normal_pdf_nan();
 
     test_normal_cdf();
     test_normal_cdf_mean_std_dev();
+    test_normal_cdf_infinite_mean();
+    test_normal_cdf_infinite_std_dev();
     test_normal_cdf_nan();
 
     test_normal_ppf();
