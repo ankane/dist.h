@@ -157,6 +157,17 @@ void test_students_t_cdf_non_integer() {
     }
 }
 
+void test_students_t_cdf_infinite() {
+    assert_in_delta(students_t_cdf(-INFINITY, 1), 0.0, 0.00001);
+    assert_in_delta(students_t_cdf(INFINITY, 1), 1.0, 0.00001);
+}
+
+void test_students_t_cdf_nan() {
+    assert(isnan(students_t_cdf(NAN, 1)));
+    // TODO uncomment in 0.2.0
+    // assert(isnan(students_t_cdf(0.0, NAN)));
+}
+
 void test_students_t_ppf_one() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -3.07768, -1.37638, -0.72654, -0.32492, 0.0, 0.32492, 0.72654, 1.37638, 3.07768, INFINITY};
@@ -214,6 +225,8 @@ int main() {
     test_students_t_cdf_two();
     test_students_t_cdf_thirty();
     test_students_t_cdf_non_integer();
+    test_students_t_cdf_infinite();
+    test_students_t_cdf_nan();
 
     test_students_t_ppf_one();
     test_students_t_ppf_two();

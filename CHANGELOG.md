@@ -1,3 +1,7 @@
+## 0.2.1 (unreleased)
+
+- Fixed bug with `students_t_cdf` when `x` is infinite or NaN
+
 ## 0.2.0 (2022-07-26)
 
 - Added support for non-integer degrees of freedom

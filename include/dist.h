@@ -79,6 +79,14 @@ double students_t_pdf(double x, double n) {
 double students_t_cdf(double x, double n) {
     assert(n >= 1);
 
+    if (isnan(x)) {
+        return NAN;
+    }
+
+    if (!isfinite(x)) {
+        return x < 0 ? 0 : 1;
+    }
+
     double start = x < 0 ? 0 : 1;
     double sign = x < 0 ? 1 : -1;
 
