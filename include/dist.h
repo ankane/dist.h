@@ -39,15 +39,24 @@ double inverse_erf(double x) {
 }
 
 double normal_pdf(double x, double mean, double std_dev) {
-    return (1.0 / (std_dev * sqrt(2.0 * DIST_PI))) * pow(DIST_E, -0.5 * pow((x - mean) / std_dev, 2));
+    // TODO uncomment in 0.3.0
+    // assert(std_dev >= 0);
+
+    double n = (x - mean) / std_dev;
+    return (1.0 / (std_dev * sqrt(2.0 * DIST_PI))) * pow(DIST_E, -0.5 * n * n);
 }
 
 double normal_cdf(double x, double mean, double std_dev) {
+    // TODO uncomment in 0.3.0
+    // assert(std_dev >= 0);
+
     return 0.5 * (1.0 + erf((x - mean) / (std_dev * sqrt(2))));
 }
 
 double normal_ppf(double p, double mean, double std_dev) {
     assert(p >= 0 && p <= 1);
+    // TODO uncomment in 0.3.0
+    // assert(std_dev >= 0);
 
     return mean + std_dev * sqrt(2) * inverse_erf(2.0 * p - 1.0);
 }
