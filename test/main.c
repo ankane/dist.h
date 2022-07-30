@@ -13,24 +13,19 @@ void assert_in_delta(double exp, double act, double delta) {
 }
 
 void test_normal_pdf() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.00443, 0.05399, 0.24197, 0.39894, 0.24197, 0.05399, 0.00443};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.00443, 0.05399, 0.24197, 0.39894, 0.24197, 0.05399, 0.00443, 0.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_pdf(inputs[i], 0, 1), expected[i], 0.00001);
     }
 }
 
 void test_normal_pdf_mean_std_dev() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.027, 0.06476, 0.12099, 0.17603, 0.19947, 0.17603, 0.12099};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.027, 0.06476, 0.12099, 0.17603, 0.19947, 0.17603, 0.12099, 0.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_pdf(inputs[i], 1, 2), expected[i], 0.00001);
     }
-}
-
-void test_normal_pdf_infinite() {
-    assert_in_delta(normal_pdf(-INFINITY, 0.0, 1.0), 0.0, 0.00001);
-    assert_in_delta(normal_pdf(INFINITY, 0.0, 1.0), 0.0, 0.00001);
 }
 
 void test_normal_pdf_nan() {
@@ -40,24 +35,19 @@ void test_normal_pdf_nan() {
 }
 
 void test_normal_cdf() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_cdf(inputs[i], 0, 1), expected[i], 0.00001);
     }
 }
 
 void test_normal_cdf_mean_std_dev() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.02275, 0.06681, 0.15866, 0.30854, 0.5, 0.69146, 0.84134};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.02275, 0.06681, 0.15866, 0.30854, 0.5, 0.69146, 0.84134, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_cdf(inputs[i], 1, 2), expected[i], 0.00001);
     }
-}
-
-void test_normal_cdf_infinite() {
-    assert_in_delta(normal_cdf(-INFINITY, 0.0, 1.0), 0.0, 0.00001);
-    assert_in_delta(normal_cdf(INFINITY, 0.0, 1.0), 1.0, 0.00001);
 }
 
 void test_normal_cdf_nan() {
@@ -83,40 +73,35 @@ void test_normal_ppf_mean_std_dev() {
 }
 
 void test_students_t_pdf_one() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.03183, 0.06366, 0.15915, 0.31831, 0.15915, 0.06366, 0.03183};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.03183, 0.06366, 0.15915, 0.31831, 0.15915, 0.06366, 0.03183, 0.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_pdf(inputs[i], 1), expected[i], 0.00001);
     }
 }
 
 void test_students_t_pdf_two() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.02741, 0.06804, 0.19245, 0.35355, 0.19245, 0.06804, 0.02741};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.02741, 0.06804, 0.19245, 0.35355, 0.19245, 0.06804, 0.02741, 0.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_pdf(inputs[i], 2), expected[i], 0.00001);
     }
 }
 
 void test_students_t_pdf_thirty() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.00678, 0.05685, 0.23799, 0.39563, 0.23799, 0.05685, 0.00678};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.00678, 0.05685, 0.23799, 0.39563, 0.23799, 0.05685, 0.00678, 0.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_pdf(inputs[i], 30), expected[i], 0.00001);
     }
 }
 
 void test_students_t_pdf_non_integer() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.02504, 0.06796, 0.2008, 0.36181, 0.2008, 0.06796, 0.02504};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.02504, 0.06796, 0.2008, 0.36181, 0.2008, 0.06796, 0.02504, 0.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_pdf(inputs[i], 2.5), expected[i], 0.00001);
     }
-}
-
-void test_students_t_pdf_infinite() {
-    assert_in_delta(students_t_pdf(-INFINITY, 1), 0.0, 0.00001);
-    assert_in_delta(students_t_pdf(INFINITY, 1), 0.0, 0.00001);
 }
 
 void test_students_t_pdf_nan() {
@@ -126,40 +111,35 @@ void test_students_t_pdf_nan() {
 }
 
 void test_students_t_cdf_one() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.10242, 0.14758, 0.25, 0.5, 0.75, 0.85242, 0.89758};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.10242, 0.14758, 0.25, 0.5, 0.75, 0.85242, 0.89758, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_cdf(inputs[i], 1), expected[i], 0.00001);
     }
 }
 
 void test_students_t_cdf_two() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.04773, 0.09175, 0.21132, 0.5, 0.78868, 0.90825, 0.95227};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.04773, 0.09175, 0.21132, 0.5, 0.78868, 0.90825, 0.95227, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_cdf(inputs[i], 2), expected[i], 0.00001);
     }
 }
 
 void test_students_t_cdf_thirty() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.00269, 0.02731, 0.16265, 0.5, 0.83735, 0.97269, 0.99731};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.00269, 0.02731, 0.16265, 0.5, 0.83735, 0.97269, 0.99731, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_cdf(inputs[i], 30), expected[i], 0.00001);
     }
 }
 
 void test_students_t_cdf_non_integer() {
-    double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
-    double expected[] = {0.03629, 0.0787, 0.20203, 0.5, 0.79797, 0.9213, 0.96371};
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.03629, 0.0787, 0.20203, 0.5, 0.79797, 0.9213, 0.96371, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_cdf(inputs[i], 2.5), expected[i], 0.00005);
     }
-}
-
-void test_students_t_cdf_infinite() {
-    assert_in_delta(students_t_cdf(-INFINITY, 1), 0.0, 0.00001);
-    assert_in_delta(students_t_cdf(INFINITY, 1), 1.0, 0.00001);
 }
 
 void test_students_t_cdf_nan() {
@@ -203,12 +183,10 @@ void test_students_t_ppf_non_integer() {
 int main() {
     test_normal_pdf();
     test_normal_pdf_mean_std_dev();
-    test_normal_pdf_infinite();
     test_normal_pdf_nan();
 
     test_normal_cdf();
     test_normal_cdf_mean_std_dev();
-    test_normal_cdf_infinite();
     test_normal_cdf_nan();
 
     test_normal_ppf();
@@ -218,14 +196,12 @@ int main() {
     test_students_t_pdf_two();
     test_students_t_pdf_thirty();
     test_students_t_pdf_non_integer();
-    test_students_t_pdf_infinite();
     test_students_t_pdf_nan();
 
     test_students_t_cdf_one();
     test_students_t_cdf_two();
     test_students_t_cdf_thirty();
     test_students_t_cdf_non_integer();
-    test_students_t_cdf_infinite();
     test_students_t_cdf_nan();
 
     test_students_t_ppf_one();
