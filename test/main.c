@@ -122,7 +122,7 @@ void test_students_t_pdf_infinite() {
 void test_students_t_pdf_nan() {
     assert(isnan(students_t_pdf(NAN, 1)));
     // TODO uncomment in 0.2.0
-    // assert!(StudentsT::pdf(0.0, f64::NAN).is_nan());
+    // assert(isnan(students_t_pdf(0.0, NAN)));
 }
 
 void test_students_t_cdf_one() {
