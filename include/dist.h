@@ -21,6 +21,12 @@
 #define DIST_PI 3.14159265358979323846
 #endif
 
+#ifdef M_SQRT2
+#define DIST_SQRT2 M_SQRT2
+#else
+#define DIST_SQRT2 1.41421356237309504880
+#endif
+
 // Winitzki, S. (2008).
 // A handy approximation for the error function and its inverse.
 // https://drive.google.com/file/d/0B2Mt7luZYBrwZlctV3A3eF82VGM/view?resourcekey=0-UQpPhwZgzP0sF4LHBDlLtg
@@ -50,7 +56,7 @@ double normal_cdf(double x, double mean, double std_dev) {
     // TODO uncomment in 0.3.0
     // assert(std_dev >= 0);
 
-    return 0.5 * (1.0 + erf((x - mean) / (std_dev * sqrt(2))));
+    return 0.5 * (1.0 + erf((x - mean) / (std_dev * DIST_SQRT2)));
 }
 
 double normal_ppf(double p, double mean, double std_dev) {
@@ -58,7 +64,7 @@ double normal_ppf(double p, double mean, double std_dev) {
     // TODO uncomment in 0.3.0
     // assert(std_dev >= 0);
 
-    return mean + std_dev * sqrt(2) * inverse_erf(2.0 * p - 1.0);
+    return mean + std_dev * DIST_SQRT2 * inverse_erf(2.0 * p - 1.0);
 }
 
 double students_t_pdf(double x, double n) {
