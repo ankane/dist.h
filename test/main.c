@@ -28,6 +28,17 @@ void test_normal_pdf_mean_std_dev() {
     }
 }
 
+void test_normal_pdf_infinite() {
+    assert_in_delta(normal_pdf(-INFINITY, 0.0, 1.0), 0.0, 0.00001);
+    assert_in_delta(normal_pdf(INFINITY, 0.0, 1.0), 0.0, 0.00001);
+}
+
+void test_normal_pdf_nan() {
+    assert(isnan(normal_pdf(NAN, 0.0, 1.0)));
+    assert(isnan(normal_pdf(0.0, NAN, 1.0)));
+    assert(isnan(normal_pdf(0.0, 0.0, NAN)));
+}
+
 void test_normal_cdf() {
     double inputs[] = {-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0};
     double expected[] = {0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865};
@@ -42,6 +53,17 @@ void test_normal_cdf_mean_std_dev() {
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_cdf(inputs[i], 1, 2), expected[i], 0.00001);
     }
+}
+
+void test_normal_cdf_infinite() {
+    assert_in_delta(normal_cdf(-INFINITY, 0.0, 1.0), 0.0, 0.00001);
+    assert_in_delta(normal_cdf(INFINITY, 0.0, 1.0), 1.0, 0.00001);
+}
+
+void test_normal_cdf_nan() {
+    assert(isnan(normal_cdf(NAN, 0.0, 1.0)));
+    assert(isnan(normal_cdf(0.0, NAN, 1.0)));
+    assert(isnan(normal_cdf(0.0, 0.0, NAN)));
 }
 
 void test_normal_ppf() {
@@ -90,6 +112,17 @@ void test_students_t_pdf_non_integer() {
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_pdf(inputs[i], 2.5), expected[i], 0.00001);
     }
+}
+
+void test_students_t_pdf_infinite() {
+    assert_in_delta(students_t_pdf(-INFINITY, 1), 0.0, 0.00001);
+    assert_in_delta(students_t_pdf(INFINITY, 1), 0.0, 0.00001);
+}
+
+void test_students_t_pdf_nan() {
+    assert(isnan(students_t_pdf(NAN, 1)));
+    // TODO uncomment in 0.2.0
+    // assert!(StudentsT::pdf(0.0, f64::NAN).is_nan());
 }
 
 void test_students_t_cdf_one() {
@@ -159,8 +192,14 @@ void test_students_t_ppf_non_integer() {
 int main() {
     test_normal_pdf();
     test_normal_pdf_mean_std_dev();
+    test_normal_pdf_infinite();
+    test_normal_pdf_nan();
+
     test_normal_cdf();
     test_normal_cdf_mean_std_dev();
+    test_normal_cdf_infinite();
+    test_normal_cdf_nan();
+
     test_normal_ppf();
     test_normal_ppf_mean_std_dev();
 
@@ -168,6 +207,8 @@ int main() {
     test_students_t_pdf_two();
     test_students_t_pdf_thirty();
     test_students_t_pdf_non_integer();
+    test_students_t_pdf_infinite();
+    test_students_t_pdf_nan();
 
     test_students_t_cdf_one();
     test_students_t_cdf_two();
