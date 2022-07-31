@@ -43,6 +43,15 @@ void test_normal_pdf_nan() {
     assert(isnan(normal_pdf(0.0, 0.0, NAN)));
 }
 
+void test_normal_pdf_zero_std_dev() {
+    assert(isnan(normal_pdf(0, 0, 0)));
+}
+
+void test_normal_pdf_negative_std_dev() {
+    // TODO uncomment in 0.3.0
+    // assert(isnan(normal_pdf(0, 0, -1)));
+}
+
 void test_normal_cdf() {
     double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
     double expected[] = {0.0, 0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865, 1.0};
@@ -74,6 +83,15 @@ void test_normal_cdf_nan() {
     assert(isnan(normal_cdf(0.0, 0.0, NAN)));
 }
 
+void test_normal_cdf_zero_std_dev() {
+    assert(isnan(normal_cdf(0, 0, 0)));
+}
+
+void test_normal_cdf_negative_std_dev() {
+    // TODO uncomment in 0.3.0
+    // assert(isnan(normal_cdf(0, 0, -1)));
+}
+
 void test_normal_ppf() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -1.28155, -0.84162, -0.5244, -0.25335, 0.0, 0.25335, 0.5244, 0.84162, 1.28155, INFINITY};
@@ -88,6 +106,22 @@ void test_normal_ppf_mean_std_dev() {
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(normal_ppf(inputs[i], 1, 2), expected[i], 0.0004);
     }
+}
+
+void test_normal_ppf_nan() {
+    // TODO uncomment in 0.3.0
+    // assert(isnan(normal_ppf(NAN, 0, 1)));
+    assert(isnan(normal_ppf(0, NAN, 1)));
+    assert(isnan(normal_ppf(0, 0, NAN)));
+}
+
+void test_normal_ppf_zero_std_dev() {
+    assert(isnan(normal_ppf(0, 0, 0)));
+}
+
+void test_normal_ppf_negative_std_dev() {
+    // TODO uncomment in 0.3.0
+    // assert(isnan(normal_ppf(0, 0, -1)));
 }
 
 void test_students_t_pdf_one() {
@@ -236,15 +270,22 @@ int main() {
     test_normal_pdf_infinite_mean();
     test_normal_pdf_infinite_std_dev();
     test_normal_pdf_nan();
+    test_normal_pdf_zero_std_dev();
+    test_normal_pdf_negative_std_dev();
 
     test_normal_cdf();
     test_normal_cdf_mean_std_dev();
     test_normal_cdf_infinite_mean();
     test_normal_cdf_infinite_std_dev();
     test_normal_cdf_nan();
+    test_normal_cdf_zero_std_dev();
+    test_normal_cdf_negative_std_dev();
 
     test_normal_ppf();
     test_normal_ppf_mean_std_dev();
+    test_normal_ppf_nan();
+    test_normal_ppf_zero_std_dev();
+    test_normal_ppf_negative_std_dev();
 
     test_students_t_pdf_one();
     test_students_t_pdf_two();
