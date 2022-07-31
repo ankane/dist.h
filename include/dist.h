@@ -169,6 +169,10 @@ double students_t_ppf(double p, double n) {
     assert(p >= 0 && p <= 1);
     assert(n >= 1);
 
+    if (n == INFINITY) {
+        return normal_ppf(p, 0, 1);
+    }
+
     // distribution is symmetric
     double sign = p < 0.5 ? -1 : 1;
     p = p < 0.5 ? 1 - p : p;

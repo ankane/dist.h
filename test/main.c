@@ -222,6 +222,14 @@ void test_students_t_ppf_non_integer() {
     }
 }
 
+void test_students_t_ppf_infinity() {
+    double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    double expected[] = {-INFINITY, -1.28155, -0.84162, -0.5244, -0.25335, 0.0, 0.25335, 0.5244, 0.84162, 1.28155, INFINITY};
+    for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_ppf(inputs[i], INFINITY), expected[i], 0.0002);
+    }
+}
+
 int main() {
     test_normal_pdf();
     test_normal_pdf_mean_std_dev();
@@ -257,6 +265,7 @@ int main() {
     test_students_t_ppf_two();
     test_students_t_ppf_thirty();
     test_students_t_ppf_non_integer();
+    test_students_t_ppf_infinity();
 
     return 0;
 }
