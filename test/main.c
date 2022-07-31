@@ -122,6 +122,14 @@ void test_students_t_pdf_non_integer() {
     }
 }
 
+void test_students_t_pdf_infinity() {
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.00443, 0.05399, 0.24197, 0.39894, 0.24197, 0.05399, 0.00443, 0.0};
+    for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_pdf(inputs[i], INFINITY), expected[i], 0.00001);
+    }
+}
+
 void test_students_t_pdf_less_than_one() {
     double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
     double expected[] = {0.0, 0.02963, 0.0519, 0.1183, 0.26968, 0.1183, 0.0519, 0.02963, 0.0};
@@ -165,6 +173,14 @@ void test_students_t_cdf_non_integer() {
     double expected[] = {0.0, 0.03629, 0.0787, 0.20203, 0.5, 0.79797, 0.9213, 0.96371, 1.0};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_cdf(inputs[i], 2.5), expected[i], 0.00005);
+    }
+}
+
+void test_students_t_cdf_infinity() {
+    double inputs[] = {-INFINITY, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, INFINITY};
+    double expected[] = {0.0, 0.00135, 0.02275, 0.15866, 0.5, 0.84134, 0.97725, 0.99865, 1.0};
+    for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
+        assert_in_delta(students_t_cdf(inputs[i], INFINITY), expected[i], 0.00001);
     }
 }
 
@@ -226,6 +242,7 @@ int main() {
     test_students_t_pdf_two();
     test_students_t_pdf_thirty();
     test_students_t_pdf_non_integer();
+    test_students_t_pdf_infinity();
     test_students_t_pdf_less_than_one();
     test_students_t_pdf_nan();
 
@@ -233,6 +250,7 @@ int main() {
     test_students_t_cdf_two();
     test_students_t_cdf_thirty();
     test_students_t_cdf_non_integer();
+    test_students_t_cdf_infinity();
     test_students_t_cdf_nan();
 
     test_students_t_ppf_one();

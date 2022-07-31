@@ -70,6 +70,10 @@ double normal_ppf(double p, double mean, double std_dev) {
 double students_t_pdf(double x, double n) {
     assert(n > 0.0);
 
+    if (n == INFINITY) {
+        return normal_pdf(x, 0, 1);
+    }
+
     return tgamma((n + 1.0) / 2.0) / (sqrt(n * DIST_PI) * tgamma(n / 2.0)) * pow(1.0 + x * x / n, -(n + 1.0) / 2.0);
 }
 
@@ -85,6 +89,10 @@ double students_t_cdf(double x, double n) {
 
     if (!isfinite(x)) {
         return x < 0 ? 0 : 1;
+    }
+
+    if (n == INFINITY) {
+        return normal_cdf(x, 0, 1);
     }
 
     double start = x < 0 ? 0 : 1;
