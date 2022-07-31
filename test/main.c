@@ -140,7 +140,7 @@ void test_students_t_pdf_less_than_one() {
 
 void test_students_t_pdf_nan() {
     assert(isnan(students_t_pdf(NAN, 1)));
-    // TODO uncomment in 0.2.0
+    // TODO uncomment in 0.3.0
     // assert(isnan(students_t_pdf(0.0, NAN)));
 }
 
@@ -186,7 +186,7 @@ void test_students_t_cdf_infinity() {
 
 void test_students_t_cdf_nan() {
     assert(isnan(students_t_cdf(NAN, 1)));
-    // TODO uncomment in 0.2.0
+    // TODO uncomment in 0.3.0
     // assert(isnan(students_t_cdf(0.0, NAN)));
 }
 
