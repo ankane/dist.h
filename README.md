@@ -6,7 +6,7 @@ PDF, CDF, and percent-point/quantile functions for the normal and Student’s t 
 
 ## Installation
 
-Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.2.0/include/dist.h) to your project and include it
+Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.2.1/include/dist.h) to your project and include it
 
 ```cpp
 #include "dist.h"

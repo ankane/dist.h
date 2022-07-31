@@ -1,4 +1,4 @@
-## 0.2.1 (unreleased)
+## 0.2.1 (2022-07-31)
 
 - Added support for `df` between zero and one to `students_t_pdf`
 - Fixed bug with `students_t_cdf` when `x` is infinite or NaN
