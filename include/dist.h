@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include <assert.h>
 #include <math.h>
 
 #ifdef M_E
@@ -45,36 +44,34 @@ double inverse_erf(double x) {
 }
 
 double normal_pdf(double x, double mean, double std_dev) {
-    // TODO uncomment in 0.3.0
-    // if (std_dev < 0) {
-    //     return NAN;
-    // }
+    if (std_dev < 0) {
+        return NAN;
+    }
 
     double n = (x - mean) / std_dev;
     return (1.0 / (std_dev * sqrt(2.0 * DIST_PI))) * pow(DIST_E, -0.5 * n * n);
 }
 
 double normal_cdf(double x, double mean, double std_dev) {
-    // TODO uncomment in 0.3.0
-    // if (std_dev < 0) {
-    //     return NAN;
-    // }
+    if (std_dev < 0) {
+        return NAN;
+    }
 
     return 0.5 * (1.0 + erf((x - mean) / (std_dev * DIST_SQRT2)));
 }
 
 double normal_ppf(double p, double mean, double std_dev) {
-    assert(p >= 0 && p <= 1);
-    // TODO uncomment in 0.3.0
-    // if (p < 0 || p > 1 || std_dev < 0) {
-    //     return NAN;
-    // }
+    if (p < 0 || p > 1 || std_dev < 0) {
+        return NAN;
+    }
 
     return mean + std_dev * DIST_SQRT2 * inverse_erf(2.0 * p - 1.0);
 }
 
 double students_t_pdf(double x, double n) {
-    assert(n > 0.0);
+    if (n <= 0) {
+        return NAN;
+    }
 
     if (n == INFINITY) {
         return normal_pdf(x, 0, 1);
@@ -87,7 +84,9 @@ double students_t_pdf(double x, double n) {
 // Algorithm 395: Student's t-distribution.
 // Communications of the ACM, 13(10), 617-619.
 double students_t_cdf(double x, double n) {
-    assert(n >= 1);
+    if (n < 1) {
+        return NAN;
+    }
 
     if (isnan(x)) {
         return NAN;
@@ -172,8 +171,9 @@ double students_t_cdf(double x, double n) {
 // Algorithm 396: Student's t-quantiles.
 // Communications of the ACM, 13(10), 619-620.
 double students_t_ppf(double p, double n) {
-    assert(p >= 0 && p <= 1);
-    assert(n >= 1);
+    if (p < 0 || p > 1 || n < 1) {
+        return NAN;
+    }
 
     if (n == INFINITY) {
         return normal_ppf(p, 0, 1);

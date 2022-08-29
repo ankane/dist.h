@@ -1,3 +1,7 @@
+## 0.3.0 (unreleased)
+
+- Return `NAN` for invalid inputs
+
 ## 0.2.1 (2022-07-31)
 
 - Added support for `df` between zero and one to `students_t_pdf`

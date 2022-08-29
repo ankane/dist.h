@@ -48,8 +48,7 @@ void test_normal_pdf_zero_std_dev() {
 }
 
 void test_normal_pdf_negative_std_dev() {
-    // TODO uncomment in 0.3.0
-    // assert(isnan(normal_pdf(0, 0, -1)));
+    assert(isnan(normal_pdf(0, 0, -1)));
 }
 
 void test_normal_cdf() {
@@ -88,8 +87,7 @@ void test_normal_cdf_zero_std_dev() {
 }
 
 void test_normal_cdf_negative_std_dev() {
-    // TODO uncomment in 0.3.0
-    // assert(isnan(normal_cdf(0, 0, -1)));
+    assert(isnan(normal_cdf(0, 0, -1)));
 }
 
 void test_normal_ppf() {
@@ -109,8 +107,7 @@ void test_normal_ppf_mean_std_dev() {
 }
 
 void test_normal_ppf_nan() {
-    // TODO uncomment in 0.3.0
-    // assert(isnan(normal_ppf(NAN, 0, 1)));
+    assert(isnan(normal_ppf(NAN, 0, 1)));
     assert(isnan(normal_ppf(0, NAN, 1)));
     assert(isnan(normal_ppf(0, 0, NAN)));
 }
@@ -120,8 +117,7 @@ void test_normal_ppf_zero_std_dev() {
 }
 
 void test_normal_ppf_negative_std_dev() {
-    // TODO uncomment in 0.3.0
-    // assert(isnan(normal_ppf(0, 0, -1)));
+    assert(isnan(normal_ppf(0, 0, -1)));
 }
 
 void test_students_t_pdf_one() {
@@ -174,8 +170,7 @@ void test_students_t_pdf_less_than_one() {
 
 void test_students_t_pdf_nan() {
     assert(isnan(students_t_pdf(NAN, 1)));
-    // TODO uncomment in 0.3.0
-    // assert(isnan(students_t_pdf(0.0, NAN)));
+    assert(isnan(students_t_pdf(0.0, NAN)));
 }
 
 void test_students_t_cdf_one() {
@@ -220,8 +215,7 @@ void test_students_t_cdf_infinity() {
 
 void test_students_t_cdf_nan() {
     assert(isnan(students_t_cdf(NAN, 1)));
-    // TODO uncomment in 0.3.0
-    // assert(isnan(students_t_cdf(0.0, NAN)));
+    assert(isnan(students_t_cdf(0.0, NAN)));
 }
 
 void test_students_t_ppf_one() {
@@ -262,6 +256,11 @@ void test_students_t_ppf_infinity() {
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
         assert_in_delta(students_t_ppf(inputs[i], INFINITY), expected[i], 0.0002);
     }
+}
+
+void test_students_t_ppf_nan() {
+    assert(isnan(students_t_ppf(NAN, 1)));
+    assert(isnan(students_t_ppf(0.5, NAN)));
 }
 
 int main() {
@@ -307,6 +306,7 @@ int main() {
     test_students_t_ppf_thirty();
     test_students_t_ppf_non_integer();
     test_students_t_ppf_infinity();
+    test_students_t_ppf_nan();
 
     return 0;
 }
