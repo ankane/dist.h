@@ -94,15 +94,22 @@ void test_normal_ppf() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -1.28155, -0.84162, -0.5244, -0.25335, 0.0, 0.25335, 0.5244, 0.84162, 1.28155, INFINITY};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(normal_ppf(inputs[i], 0, 1), expected[i], 0.0002);
+        assert_in_delta(normal_ppf(inputs[i], 0, 1), expected[i], 0.00001);
     }
+}
+
+void test_normal_ppf_test_data() {
+    // test data from paper
+    assert_in_delta(normal_ppf(0.25, 0.0, 1.0), -0.6744897501960817, 0.0000000000000001);
+    assert_in_delta(normal_ppf(0.001, 0.0, 1.0), -3.090232306167814, 0.000000000000001);
+    assert_in_delta(normal_ppf(1e-20, 0.0, 1.0), -9.262340089798408, 0.000000000000004);
 }
 
 void test_normal_ppf_mean_std_dev() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -1.5631, -0.68324, -0.0488, 0.49331, 1.0, 1.50669, 2.0488, 2.68324, 3.5631, INFINITY};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(normal_ppf(inputs[i], 1, 2), expected[i], 0.0004);
+        assert_in_delta(normal_ppf(inputs[i], 1, 2), expected[i], 0.00001);
     }
 }
 
@@ -238,7 +245,7 @@ void test_students_t_ppf_thirty() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -1.31042, -0.85377, -0.53002, -0.25561, 0.0, 0.25561, 0.53002, 0.85377, 1.31042, INFINITY};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(students_t_ppf(inputs[i], 30), expected[i], 0.0002);
+        assert_in_delta(students_t_ppf(inputs[i], 30), expected[i], 0.00001);
     }
 }
 
@@ -254,7 +261,7 @@ void test_students_t_ppf_infinity() {
     double inputs[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double expected[] = {-INFINITY, -1.28155, -0.84162, -0.5244, -0.25335, 0.0, 0.25335, 0.5244, 0.84162, 1.28155, INFINITY};
     for (size_t i = 0; i < sizeof(inputs) / sizeof(double); i++) {
-        assert_in_delta(students_t_ppf(inputs[i], INFINITY), expected[i], 0.0002);
+        assert_in_delta(students_t_ppf(inputs[i], INFINITY), expected[i], 0.00001);
     }
 }
 
@@ -281,6 +288,7 @@ int main() {
     test_normal_cdf_negative_std_dev();
 
     test_normal_ppf();
+    test_normal_ppf_test_data();
     test_normal_ppf_mean_std_dev();
     test_normal_ppf_nan();
     test_normal_ppf_zero_std_dev();
