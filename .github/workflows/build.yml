@@ -8,16 +8,17 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v3
-    - run: gcc -Wall -Wextra -Werror -o test/main test/main.c -lm
-    - run: test/main
+      - uses: actions/checkout@v3
 
-    - run: gcc -Wall -Wextra -Werror -Iinclude -o example/main example/main.c -lm
-    - run: example/main
+      - run: gcc -Wall -Wextra -Werror -o test/main test/main.c -lm
+      - run: test/main
 
-    - if: ${{ startsWith(matrix.os, 'windows') }}
-      run: |
-        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-        cl /W3 test/main.c /link /out:test/main-msvc.exe
-        call "test/main-msvc.exe"
-      shell: cmd
+      - run: gcc -Wall -Wextra -Werror -Iinclude -o example/main example/main.c -lm
+      - run: example/main
+
+      - if: ${{ startsWith(matrix.os, 'windows') }}
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cl /W3 test/main.c /link /out:test/main-msvc.exe
+          call "test/main-msvc.exe"
+        shell: cmd
