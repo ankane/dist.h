@@ -2,7 +2,7 @@
 
 PDF, CDF, and percent-point/quantile functions for the normal and Student’s t distributions
 
-[![Build Status](https://github.com/ankane/dist.h/workflows/build/badge.svg?branch=master)](https://github.com/ankane/dist.h/actions)
+[![Build Status](https://github.com/ankane/dist.h/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/dist.h/actions)
 
 ## Installation
 
