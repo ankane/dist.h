@@ -1,3 +1,7 @@
+## 0.3.1 (unreleased)
+
+- Added experimental support for CMake
+
 ## 0.3.0 (2022-08-28)
 
 - Improved accuracy of `normal_ppf` and `students_t_ppf`
