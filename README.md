@@ -6,11 +6,7 @@ PDF, CDF, and percent-point/quantile functions for the normal and Student’s t 
 
 ## Installation
 
-Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.3.0/include/dist.h) to your project and include it:
-
-```cpp
-#include "dist.h"
-```
+Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.3.0/include/dist.h) to your project.
 
 There is also experimental support for CMake and FetchContent:
 
@@ -24,6 +20,12 @@ target_link_libraries(app PRIVATE dist::dist)
 ```
 
 ## Getting Started
+
+Include the header
+
+```cpp
+#include "dist.h"
+```
 
 - [Normal](#normal)
 - [Student’s t](#students-t)
