@@ -8,7 +8,7 @@ PDF, CDF, and percent-point/quantile functions for the normal and Student’s t 
 
 Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.3.0/include/dist.h) to your project.
 
-There is also experimental support for CMake and FetchContent:
+There is also support for CMake and FetchContent:
 
 ```cmake
 include(FetchContent)
