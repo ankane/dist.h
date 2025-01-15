@@ -1,4 +1,4 @@
-## 0.3.1 (unreleased)
+## 0.3.1 (2025-01-15)
 
 - Added support for CMake
 

@@ -6,14 +6,14 @@ PDF, CDF, and percent-point/quantile functions for the normal and Student’s t 
 
 ## Installation
 
-Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.3.0/include/dist.h) to your project.
+Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.3.1/include/dist.h) to your project.
 
 There is also support for CMake and FetchContent:
 
 ```cmake
 include(FetchContent)
 
-FetchContent_Declare(dist GIT_REPOSITORY https://github.com/ankane/dist.h.git GIT_TAG 50040bb82dd5a62054066d71ce89dfab5f75c836)
+FetchContent_Declare(dist GIT_REPOSITORY https://github.com/ankane/dist.h.git GIT_TAG v0.3.1)
 FetchContent_MakeAvailable(dist)
 
 target_link_libraries(app PRIVATE dist::dist)
