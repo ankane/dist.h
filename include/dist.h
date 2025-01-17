@@ -26,6 +26,7 @@
 #define DIST_SQRT2 1.41421356237309504880
 #endif
 
+/// Returns the probability density function (PDF) of the normal distribution.
 double normal_pdf(double x, double mean, double std_dev) {
     if (std_dev <= 0) {
         return NAN;
@@ -35,6 +36,7 @@ double normal_pdf(double x, double mean, double std_dev) {
     return (1.0 / (std_dev * sqrt(2.0 * DIST_PI))) * pow(DIST_E, -0.5 * n * n);
 }
 
+/// Returns the cumulative distribution function (CDF) of the normal distribution.
 double normal_cdf(double x, double mean, double std_dev) {
     if (std_dev <= 0) {
         return NAN;
@@ -43,6 +45,7 @@ double normal_cdf(double x, double mean, double std_dev) {
     return 0.5 * (1.0 + erf((x - mean) / (std_dev * DIST_SQRT2)));
 }
 
+/// Returns the percent-point/quantile function (PPF) of the normal distribution.
 // Wichura, M. J. (1988).
 // Algorithm AS 241: The Percentage Points of the Normal Distribution.
 // Journal of the Royal Statistical Society. Series C (Applied Statistics), 37(3), 477-484.
@@ -83,6 +86,7 @@ double normal_ppf(double p, double mean, double std_dev) {
     }
 }
 
+/// Returns the probability density function (PDF) of the Student's t distribution.
 double students_t_pdf(double x, double n) {
     if (n <= 0) {
         return NAN;
@@ -95,6 +99,7 @@ double students_t_pdf(double x, double n) {
     return tgamma((n + 1.0) / 2.0) / (sqrt(n * DIST_PI) * tgamma(n / 2.0)) * pow(1.0 + x * x / n, -(n + 1.0) / 2.0);
 }
 
+/// Returns the cumulative distribution function (CDF) of the Student's t distribution.
 // Hill, G. W. (1970).
 // Algorithm 395: Student's t-distribution.
 // Communications of the ACM, 13(10), 617-619.
@@ -182,6 +187,7 @@ double students_t_cdf(double x, double n) {
     return start + sign * (z - a) / 2;
 }
 
+/// Returns the percent-point/quantile function (PPF) of the Student's t distribution.
 // Hill, G. W. (1970).
 // Algorithm 396: Student's t-quantiles.
 // Communications of the ACM, 13(10), 619-620.
