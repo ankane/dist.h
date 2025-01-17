@@ -240,3 +240,7 @@ double students_t_ppf(double p, double n) {
     }
     return sign * sqrt(n * y);
 }
+
+#undef DIST_E
+#undef DIST_PI
+#undef DIST_SQRT2
