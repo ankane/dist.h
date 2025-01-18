@@ -26,6 +26,10 @@
 #define DIST_SQRT2 1.41421356237309504880
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// Returns the probability density function (PDF) of the normal distribution.
 double normal_pdf(double x, double mean, double std_dev) {
     if (std_dev <= 0) {
@@ -240,6 +244,10 @@ double students_t_ppf(double p, double n) {
     }
     return sign * sqrt(n * y);
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #undef DIST_E
 #undef DIST_PI
