@@ -8,6 +8,8 @@
 
 #include <math.h>
 
+/// @cond
+
 #ifdef M_E
 #define DIST_E M_E
 #else
@@ -25,6 +27,8 @@
 #else
 #define DIST_SQRT2 1.41421356237309504880
 #endif
+
+/// @endcond
 
 #ifdef __cplusplus
 extern "C" {
