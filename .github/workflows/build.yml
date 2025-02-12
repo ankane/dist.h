@@ -31,3 +31,8 @@ jobs:
           cl /W3 test/main.c /link /out:test/main-msvc.exe
           call "test/main-msvc.exe"
         shell: cmd
+
+      - run: cmake -S . -B build
+      - run: cmake --build build
+      - run: cmake --install build --prefix /tmp
+      - run: gcc -I/tmp/include -o example/main example/main.c -lm
