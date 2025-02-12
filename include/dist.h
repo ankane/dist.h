@@ -35,7 +35,7 @@ extern "C" {
 #endif
 
 /// Returns the probability density function (PDF) of the normal distribution.
-inline double normal_pdf(double x, double mean, double std_dev) {
+static inline double normal_pdf(double x, double mean, double std_dev) {
     if (std_dev <= 0) {
         return NAN;
     }
@@ -45,7 +45,7 @@ inline double normal_pdf(double x, double mean, double std_dev) {
 }
 
 /// Returns the cumulative distribution function (CDF) of the normal distribution.
-inline double normal_cdf(double x, double mean, double std_dev) {
+static inline double normal_cdf(double x, double mean, double std_dev) {
     if (std_dev <= 0) {
         return NAN;
     }
@@ -57,7 +57,7 @@ inline double normal_cdf(double x, double mean, double std_dev) {
 // Wichura, M. J. (1988).
 // Algorithm AS 241: The Percentage Points of the Normal Distribution.
 // Journal of the Royal Statistical Society. Series C (Applied Statistics), 37(3), 477-484.
-inline double normal_ppf(double p, double mean, double std_dev) {
+static inline double normal_ppf(double p, double mean, double std_dev) {
     if (p < 0 || p > 1 || std_dev <= 0 || isnan(mean) || isnan(std_dev)) {
         return NAN;
     }
@@ -95,7 +95,7 @@ inline double normal_ppf(double p, double mean, double std_dev) {
 }
 
 /// Returns the probability density function (PDF) of the Student's t distribution.
-inline double students_t_pdf(double x, double n) {
+static inline double students_t_pdf(double x, double n) {
     if (n <= 0) {
         return NAN;
     }
@@ -111,7 +111,7 @@ inline double students_t_pdf(double x, double n) {
 // Hill, G. W. (1970).
 // Algorithm 395: Student's t-distribution.
 // Communications of the ACM, 13(10), 617-619.
-inline double students_t_cdf(double x, double n) {
+static inline double students_t_cdf(double x, double n) {
     if (n < 1) {
         return NAN;
     }
@@ -199,7 +199,7 @@ inline double students_t_cdf(double x, double n) {
 // Hill, G. W. (1970).
 // Algorithm 396: Student's t-quantiles.
 // Communications of the ACM, 13(10), 619-620.
-inline double students_t_ppf(double p, double n) {
+static inline double students_t_ppf(double p, double n) {
     if (p < 0 || p > 1 || n < 1) {
         return NAN;
     }
