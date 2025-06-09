@@ -172,7 +172,7 @@ static inline double students_t_cdf(double x, double n) {
         return start + sign * (z - a) / 2;
     }
 
-    // tail series expanation for large t-values
+    // tail series expansion for large t-values
     double a = sqrt(b);
     y = a * n;
     int j = 0;
