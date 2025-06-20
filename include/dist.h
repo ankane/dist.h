@@ -1,4 +1,4 @@
-/*!
+/*
  * dist.h v0.3.1
  * https://github.com/ankane/dist.h
  * Unlicense OR MIT License
