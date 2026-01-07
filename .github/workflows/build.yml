@@ -23,7 +23,7 @@ jobs:
           valgrind --leak-check=yes test/main
 
       - if: ${{ startsWith(matrix.os, 'macos') }}
-        run: /opt/homebrew/opt/llvm@18/bin/scan-build --status-bugs gcc -o test/main test/main.c -lm
+        run: /opt/homebrew/opt/llvm@20/bin/scan-build --status-bugs gcc -o test/main test/main.c -lm
 
       - if: ${{ startsWith(matrix.os, 'windows') }}
         run: |
