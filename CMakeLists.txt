@@ -7,7 +7,9 @@ include(GNUInstallDirs)
 add_library(dist INTERFACE)
 add_library(dist::dist ALIAS dist)
 
-target_link_libraries(dist INTERFACE m)
+if(NOT MSVC)
+    target_link_libraries(dist INTERFACE m)
+endif()
 
 target_include_directories(
     dist
