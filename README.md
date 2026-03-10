@@ -70,6 +70,7 @@ To get started with development:
 ```sh
 git clone https://github.com/ankane/dist.h.git
 cd dist.h
-gcc -Wall -Wextra -Werror -o test/main test/main.c -lm
-test/main
+cmake -S . -B build
+cmake --build build
+build/test
 ```
