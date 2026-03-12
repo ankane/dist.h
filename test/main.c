@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stddef.h>
 
-#include "../include/dist.h"
+#include <dist.h>
 
 void assert_in_delta(double exp, double act, double delta) {
     if (isinf(exp)) {
