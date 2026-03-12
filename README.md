@@ -1,19 +1,19 @@
-# dist.h
+# Dist C
 
 PDF, CDF, and percent-point/quantile functions for the normal and Student’s t distributions
 
-[![Build Status](https://github.com/ankane/dist.h/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/dist.h/actions)
+[![Build Status](https://github.com/ankane/dist-c/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/dist-c/actions)
 
 ## Installation
 
-Add [the header](https://raw.githubusercontent.com/ankane/dist.h/v0.3.1/include/dist.h) to your project.
+Add [the header](https://raw.githubusercontent.com/ankane/dist-c/v0.3.1/include/dist.h) to your project.
 
 There is also support for CMake and FetchContent:
 
 ```cmake
 include(FetchContent)
 
-FetchContent_Declare(dist GIT_REPOSITORY https://github.com/ankane/dist.h.git GIT_TAG v0.3.1)
+FetchContent_Declare(dist GIT_REPOSITORY https://github.com/ankane/dist-c.git GIT_TAG v0.3.1)
 FetchContent_MakeAvailable(dist)
 
 target_link_libraries(app PRIVATE dist::dist)
@@ -54,22 +54,22 @@ students_t_ppf(p, df);
 
 ## History
 
-View the [changelog](https://github.com/ankane/dist.h/blob/master/CHANGELOG.md)
+View the [changelog](https://github.com/ankane/dist-c/blob/master/CHANGELOG.md)
 
 ## Contributing
 
 Everyone is encouraged to help improve this project. Here are a few ways you can help:
 
-- [Report bugs](https://github.com/ankane/dist.h/issues)
-- Fix bugs and [submit pull requests](https://github.com/ankane/dist.h/pulls)
+- [Report bugs](https://github.com/ankane/dist-c/issues)
+- Fix bugs and [submit pull requests](https://github.com/ankane/dist-c/pulls)
 - Write, clarify, or fix documentation
 - Suggest or add new features
 
 To get started with development:
 
 ```sh
-git clone https://github.com/ankane/dist.h.git
-cd dist.h
+git clone https://github.com/ankane/dist-c.git
+cd dist-c
 cmake -S . -B build
 cmake --build build
 build/test
