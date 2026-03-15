@@ -6,9 +6,9 @@
 
 void assert_in_delta(double exp, double act, double delta) {
     if (isinf(exp)) {
-      assert(exp == act);
+        assert(exp == act);
     } else {
-      assert(fabs(exp - act) < delta);
+        assert(fabs(exp - act) < delta);
     }
 }
 
